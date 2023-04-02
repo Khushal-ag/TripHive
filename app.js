@@ -10,6 +10,7 @@ const Review = require('./models/review');
 
 const ExpressError = require('./utils/expressError');
 const CatchAsync = require('./utils/catchAsync');
+const { hotelSchema, reviewSchema } = require('./schemas.js');
 
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'));
@@ -29,6 +30,29 @@ mongo.connect(process.env.MONGO_URI)
     }))
     .catch(err => console.error('Could not connect to MongoDB...', err))
 
+//Error Handling
+
+const validateHotel = (req, res, next) => {
+    const { error } = hotelSchema.validate(req.body)
+    if (error) {
+        const msg = error.details.map(e => e.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
+}
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body)
+    if (error) {
+        const msg = error.details.map(e => e.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
+}
+
+
 //Routes
 app.get('/', (req, res) => {
     res.render('home');
@@ -43,7 +67,7 @@ app.get('/hotel/new', (req, res) => {
     res.render('hotel/new')
 })
 
-app.post('/hotel', CatchAsync(async (req, res) => {
+app.post('/hotel', validateHotel, CatchAsync(async (req, res) => {
     const hoteldata = new Hotel(req.body.hotel)
     console.log(hoteldata)
     await hoteldata.save()
@@ -69,14 +93,14 @@ app.get('/hotel/:id/edit', CatchAsync(async (req, res) => {
     res.render('hotel/edit', { hotel })
 }))
 
-app.put('/hotel/:id', CatchAsync(async (req, res) => {
+app.put('/hotel/:id', validateHotel, CatchAsync(async (req, res) => {
     const { id } = req.params
     const hoteldata = req.body.hotel
     const updated = await Hotel.findByIdAndUpdate(id, hoteldata, { runValidators: true, new: true })
     res.redirect(`/hotel/${id}`)
 }))
 
-app.post('/hotel/:id/reviews', CatchAsync(async (req, res) => {
+app.post('/hotel/:id/reviews', validateReview, CatchAsync(async (req, res) => {
     const { id } = req.params
     const hotel = await Hotel.findById(id)
     const review = new Review(req.body.review)
