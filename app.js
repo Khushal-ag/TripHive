@@ -36,10 +36,28 @@ app.get('/hotel', async (req, res) => {
     res.render('hotel/index', { hotels });
 })
 
+app.get('/hotel/new', (req, res) => {
+    res.render('hotel/new')
+})
+
 app.get('/hotel/:id', async (req, res) => {
     const { id } = req.params
     const hotel = await Hotel.findById(id).populate('reviews')
     res.render('hotel/show', { hotel })
+})
+
+app.post('/hotel', async (req, res) => {
+    const hoteldata = new Hotel(req.body.hotel)
+    console.log(hoteldata)
+    await hoteldata.save()
+    res.redirect(`/hotel/${hoteldata._id}`)
+})
+
+app.delete('/hotel/:id', async (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    const deleted = await Hotel.findByIdAndDelete(id)
+    res.redirect('/hotel')
 })
 
 app.post('/hotel/:id/reviews', async (req, res) => {

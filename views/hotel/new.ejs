@@ -1,0 +1,106 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+<div class="row m-5">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="h1">New Hotel</div>
+      </div>
+      <div class="card-body">
+        <form
+          action="/hotel"
+          method="post"
+          class="validated-form"
+          novalidate
+        >
+          <div>
+            <label class="form-label" for="title">Title : </label>
+            <input
+              type="text"
+              name="hotel[title]"
+              id="title"
+              class="form-control"
+              required
+            />
+
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div>
+            <label class="form-label" for="price">Price : </label>
+            <input
+              type="number"
+              name="hotel[price]"
+              id="price"
+              class="form-control"
+              required
+            />
+
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div>
+            <label class="form-label" for="description">Description : </label>
+            <textarea
+              name="hotel[description]"
+              id="description"
+              class="form-control"
+              required
+            ></textarea>
+
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div>
+            <label class="form-label" for="location">Location : </label>
+            <input
+              type="text"
+              name="hotel[location]"
+              id="location"
+              class="form-control"
+              required
+            />
+
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div>
+            <label class="form-label" for="image">Image : </label>
+            <input
+              type="text"
+              name="hotel[image]"
+              id="image"
+              class="form-control"
+              required
+            />
+
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div>
+            <button class="btn btn-primary mt-3">Add</button>
+            <a href="/hotel" class="btn btn-danger mt-3">Back</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    var forms = document.querySelectorAll(".validated-form");
+
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
