@@ -1,0 +1,148 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+<div class="row m-5">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header">
+        <h1><%= hotel.title %></h1>
+      </div>
+      <img src="<%= hotel.image %>" alt="" class="card-img-top" />
+      <div class="card-body">
+        <span class="text-dark card-title">Price : </span>
+        <span class="text-muted card-text"><%= hotel.price %></span>
+      </div>
+      <div class="card-body">
+        <span class="text-success card-title">Description : </span>
+        <span class="text-primary card-text"><%= hotel.description %></span>
+      </div>
+      <div class="card-body">
+        <span class="text-success card-title">Location : </span>
+        <span
+          ><a
+            href="https://www.google.com/maps/place/<%= hotel.location %>"
+            target="_blank"
+            class="text-primary text-decoration-none card-text"
+            ><%= hotel.location %></a
+          ></span
+        >
+      </div>
+      <div class="card-footer">
+        <span>
+          <a href="/hotel" class="btn btn-dark text-decoration-none"
+            >Back</a
+          >
+          <a
+            href="/hotel/<%= hotel._id %>/edit"
+            class="btn btn-success text-decoration-none"
+            >Edit</a
+          >
+        </span>
+        <form action="/hotel/<%= hotel._id %>?_method=delete" method="post">
+          <button class="btn btn-danger text-decoration-none mt-3">
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row m-5">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header">
+        <h1>Submit Your Review</h1>
+      </div>
+      <div class="card-body">
+        <form
+          action="/hotel/<%= hotel._id %>/reviews"
+          method="post"
+          class="validated-form"
+          novalidate
+        >
+          <div class="form-group">
+            <label class="form-label" for="rating">Rating</label>
+            <input
+              type="range"
+              name="review[rating]"
+              id="rating"
+              class="form-control"
+              min="1"
+              max="5"
+              required
+            />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="form-group">
+              <label class="form-label" for="review">Review</label>
+              <textarea
+                name="review[body]"
+                id="review"
+                cols="30"
+                rows="5"
+                class="form-control"
+                required
+              ></textarea>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <button class="btn btn-success mt-2">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% if(hotel.reviews.length){ %>
+<div class="row m-5">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header">
+        <h1>Reviews</h1>
+      </div>
+      <div class="card-body">
+        <% for(let review of hotel.reviews){ %>
+        <div class="card">
+          <div class="card-body">
+            <div>
+              <span class="text-dark card-title">Rating : </span>
+              <span class="text-muted card-text"><%= review.rating %></span>
+            </div>
+            <div>
+              <span class="text-success card-title">Review : </span>
+              <span class="text-primary card-text"><%= review.body %></span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <form action="/hotel/<%= hotel._id %>/reviews/<%= review._id %>/?_method=delete" method="post">
+              <button class="btn btn-danger text-decoration-none mt-3">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+<script>
+  (function () {
+    "use strict";
+
+    var forms = document.querySelectorAll(".validated-form");
+
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>

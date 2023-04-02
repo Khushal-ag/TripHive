@@ -6,6 +6,7 @@ const ejsmate = require('ejs-mate')
 const mongo = require('mongoose');
 
 const Hotel = require('./models/hotel');
+const Review = require('./models/review');
 
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'));
@@ -33,4 +34,27 @@ app.get('/', (req, res) => {
 app.get('/hotel', async (req, res) => {
     const hotels = await Hotel.find({}).sort({ title: 1 })
     res.render('hotel/index', { hotels });
+})
+
+app.get('/hotel/:id', async (req, res) => {
+    const { id } = req.params
+    const hotel = await Hotel.findById(id).populate('reviews')
+    res.render('hotel/show', { hotel })
+})
+
+app.post('/hotel/:id/reviews', async (req, res) => {
+    const { id } = req.params
+    const hotel = await Hotel.findById(id)
+    const review = new Review(req.body.review)
+    hotel.reviews.push(review)
+    await review.save()
+    await hotel.save()
+    res.redirect(`/hotel/${hotel._id}`)
+})
+
+app.delete('/hotel/:id/reviews/:reviewId',async (req, res) => {
+    const { id, reviewId } = req.params
+    await Hotel.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
+    await Review.findByIdAndDelete(reviewId)
+    res.redirect(`/hotel/${id}`)
 })
