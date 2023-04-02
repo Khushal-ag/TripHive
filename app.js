@@ -5,6 +5,8 @@ require('dotenv').config();
 const ejsmate = require('ejs-mate')
 const mongo = require('mongoose');
 
+const Hotel = require('./models/hotel');
+
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'));
 
@@ -26,4 +28,9 @@ mongo.connect(process.env.MONGO_URI)
 //Routes
 app.get('/', (req, res) => {
     res.render('home');
+})
+
+app.get('/hotel', async (req, res) => {
+    const hotels = await Hotel.find({}).sort({ title: 1 })
+    res.render('hotel/index', { hotels });
 })
