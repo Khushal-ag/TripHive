@@ -1,17 +1,29 @@
-    const express = require("express");
-    const path = require("path");
-    const app = express();
+const express = require("express");
+const path = require("path");
+const app = express();
+require('dotenv').config();
+const ejsmate = require('ejs-mate')
+const mongo = require('mongoose');
 
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'));
 
-    app.set('view engine', 'ejs');
-    app.use(express.urlencoded({ extended: true }))
-    app.use(express.static(path.join(__dirname,'public')))
-    app.set('views', path.join(__dirname, '/views'));
+app.set('view engine', 'ejs');
+app.engine('ejs', ejsmate)
 
-    app.get('/', (req, res) => {
-    res.render('TripHive Home');
-    })
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('views', path.join(__dirname, '/views'));
 
-    app.listen(3000,() => {
-    console.log('Server is running on port',3000);
-    })
+//MongoDB Connection
+mongo.set('strictQuery', false)
+mongo.connect(process.env.MONGO_URI)
+    .then(() => app.listen(process.env.PORT, () => {
+        console.log('Server is running & MongoDB is connected on port', process.env.PORT);
+    }))
+    .catch(err => console.error('Could not connect to MongoDB...', err))
+
+//Routes
+app.get('/', (req, res) => {
+    res.render('home');
+})
