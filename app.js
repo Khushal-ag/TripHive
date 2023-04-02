@@ -46,11 +46,24 @@ app.get('/hotel/:id', async (req, res) => {
     res.render('hotel/show', { hotel })
 })
 
+app.get('/hotel/:id/edit', async (req, res) => {
+    const { id } = req.params
+    const hotel = await Hotel.findById(id)
+    res.render('hotel/edit', { hotel })
+})
+
 app.post('/hotel', async (req, res) => {
     const hoteldata = new Hotel(req.body.hotel)
     console.log(hoteldata)
     await hoteldata.save()
     res.redirect(`/hotel/${hoteldata._id}`)
+})
+
+app.put('/hotel/:id',async (req, res) => {
+    const { id } = req.params
+    const hoteldata = req.body.hotel
+    const updated = await Hotel.findByIdAndUpdate(id, hoteldata, { runValidators: true, new: true })
+    res.redirect(`/hotel/${id}`)
 })
 
 app.delete('/hotel/:id', async (req, res) => {
