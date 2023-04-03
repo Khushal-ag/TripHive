@@ -52,7 +52,6 @@ const validateReview = (req, res, next) => {
     }
 }
 
-
 //Routes
 app.get('/', (req, res) => {
     res.render('home');

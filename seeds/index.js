@@ -2,6 +2,7 @@ const mongo = require('mongoose');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 const Hotel = require('../models/hotel');
+const Review = require('../models/review');
 require('dotenv').config();
 
 mongo.set('strictQuery', false)
@@ -19,6 +20,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Hotel.deleteMany({});
+    await Review.deleteMany({});
     for (let i = 0; i < 30; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const hotel = new Hotel({
