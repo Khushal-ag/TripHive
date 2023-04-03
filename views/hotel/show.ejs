@@ -1,7 +1,6 @@
 <% layout('layouts/boilerplate.ejs') %>
-
 <div class="row m-5">
-  <div class="col-6 offset-3">
+  <div class="col-6">
     <div class="card">
       <div class="card-header">
         <h1><%= hotel.title %></h1>
@@ -27,28 +26,24 @@
         >
       </div>
       <div class="card-footer">
-        <span>
-          <a href="/hotel" class="btn btn-dark text-decoration-none"
-            >Back</a
-          >
+        <div class="flex">
+          <a href="/hotel" class="btn btn-dark text-decoration-none">Back</a>
           <a
             href="/hotel/<%= hotel._id %>/edit"
             class="btn btn-success text-decoration-none"
             >Edit</a
           >
-        </span>
-        <form action="/hotel/<%= hotel._id %>?_method=delete" method="post">
-          <button class="btn btn-danger text-decoration-none mt-3">
-            Delete
-          </button>
-        </form>
+          <form action="/hotel/<%= hotel._id %>?_method=delete" method="post">
+            <button class="btn btn-danger text-decoration-none mt-3">
+              Delete
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row m-5">
-  <div class="col-6 offset-3">
-    <div class="card">
+  <div class="col-6">
+    <div class="card mb-3">
       <div class="card-header">
         <h1>Submit Your Review</h1>
       </div>
@@ -88,11 +83,7 @@
         </form>
       </div>
     </div>
-  </div>
-</div>
-<% if(hotel.reviews.length){ %>
-<div class="row m-5">
-  <div class="col-6 offset-3">
+    <% if(hotel.reviews.length){ %>
     <div class="card">
       <div class="card-header">
         <h1>Reviews</h1>
@@ -111,7 +102,10 @@
             </div>
           </div>
           <div class="card-footer">
-            <form action="/hotel/<%= hotel._id %>/reviews/<%= review._id %>/?_method=delete" method="post">
+            <form
+              action="/hotel/<%= hotel._id %>/reviews/<%= review._id %>/?_method=delete"
+              method="post"
+            >
               <button class="btn btn-danger text-decoration-none mt-3">
                 Delete
               </button>
@@ -122,27 +116,27 @@
       </div>
     </div>
   </div>
+  <% } %>
+  <script>
+    (function () {
+      "use strict";
+
+      var forms = document.querySelectorAll(".validated-form");
+
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    })();
+  </script>
 </div>
-<% } %>
-<script>
-  (function () {
-    "use strict";
-
-    var forms = document.querySelectorAll(".validated-form");
-
-    Array.prototype.slice.call(forms).forEach(function (form) {
-      form.addEventListener(
-        "submit",
-        function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-  })();
-</script>
