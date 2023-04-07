@@ -7,12 +7,7 @@
         <div class="h1">New Hotel</div>
       </div>
       <div class="card-body">
-        <form
-          action="/hotel"
-          method="post"
-          class="validated-form"
-          novalidate
-        >
+        <form action="/hotel" method="post" class="validated-form" novalidate>
           <div>
             <label class="form-label" for="title">Title : </label>
             <input
@@ -81,26 +76,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  (function () {
-    "use strict";
-
-    var forms = document.querySelectorAll(".validated-form");
-
-    Array.prototype.slice.call(forms).forEach(function (form) {
-      form.addEventListener(
-        "submit",
-        function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-  })();
-</script>
