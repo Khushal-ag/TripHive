@@ -5,6 +5,7 @@ require('dotenv').config();
 const ejsmate = require('ejs-mate')
 const mongo = require('mongoose');
 const session = require('express-session');
+const flash = require('connect-flash');
 const hotels = require('./routes/hotels')
 const reviews = require('./routes/reviews')
 
@@ -28,10 +29,6 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
-// Routes
-app.use('/hotel', hotels)
-app.use('/hotel/:id/reviews', reviews)
-
 //Session
 const sessionConfig = {
     secret: 'UmveeIsMySecret',
@@ -44,8 +41,19 @@ const sessionConfig = {
     }
 }
 app.use(session(sessionConfig))
+app.use(flash())
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    next()
+})
 
 //Routes
+
+app.use('/hotel', hotels)
+app.use('/hotel/:id/reviews', reviews)
+
 app.get('/', (req, res) => {
     res.render('home');
 })
