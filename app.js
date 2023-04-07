@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const ejsmate = require('ejs-mate')
 const mongo = require('mongoose');
+const session = require('express-session');
 
 const Hotel = require('./models/hotel');
 const Review = require('./models/review');
@@ -24,11 +25,14 @@ app.set('views', path.join(__dirname, '/views'));
 
 //MongoDB Connection
 mongo.set('strictQuery', false)
-mongo.connect(process.env.MONGO_URI)
-    .then(() => app.listen(process.env.PORT, () => {
-        console.log('Server is running & MongoDB is connected on port', process.env.PORT);
-    }))
-    .catch(err => console.error('Could not connect to MongoDB...', err))
+mongo.connect(process.env.Mongo_URI)
+
+const db = mongo.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
+
 
 //Error Handling
 
@@ -51,6 +55,19 @@ const validateReview = (req, res, next) => {
         next()
     }
 }
+
+//Session
+const sessionConfig = {
+    secret: 'UmveeIsMySecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+app.use(session(sessionConfig))
 
 //Routes
 app.get('/', (req, res) => {
@@ -125,3 +142,7 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = 'Something went wrong'
     res.status(statusCode).render('error', { err })
 })
+
+app.listen(process.env.PORT, () => {
+    console.log(`Serving on port ${process.env.PORT}`);
+});
