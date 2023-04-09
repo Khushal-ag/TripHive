@@ -8,9 +8,14 @@ const mongo = require('mongoose');
 const methodOverride = require('method-override')
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user')
+const userRoutes = require('./routes/userRoutes')
 const hotelRoutes = require('./routes/hotelRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
 
+//Express configuration
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsmate)
 app.set('views', path.join(__dirname, '/views'));
@@ -43,15 +48,25 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 //Global var Middleware
 app.use((req, res, next) => {
+    if (!['/login', '/register', '/'].includes(req.originalUrl)) {
+        req.session.returnTo = req.originalUrl
+    }
+    res.locals.currentUser = req.user
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next()
 })
 
 //Routes
+app.use('/', userRoutes)
 app.use('/hotel', hotelRoutes)
 app.use('/hotel/:id/reviews', reviewRoutes)
 
