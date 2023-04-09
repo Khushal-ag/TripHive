@@ -30,7 +30,7 @@ router.post('/', validateHotel, CatchAsync(async (req, res) => {
     const hoteldata = new Hotel(req.body.hotel)
     console.log(hoteldata)
     await hoteldata.save()
-    req.flash('success', 'Successfully made a new hotel!')
+    req.flash('success', 'Successfully Added a new Hotel!')
     res.redirect(`/hotel/${hoteldata._id}`)
 }))
 
@@ -38,18 +38,10 @@ router.get('/:id', CatchAsync(async (req, res) => {
     const { id } = req.params
     const hotel = await Hotel.findById(id).populate('reviews')
     if (!hotel) {
-        req.flash('error', 'Cannot find that hotel!')
+        req.flash('error', 'Cannot find that Hotel!')
         return res.redirect('/hotel')
     }
     res.render('hotel/show', { hotel })
-}))
-
-router.delete('/:id', CatchAsync(async (req, res) => {
-    const { id } = req.params
-    console.log(id)
-    const deleted = await Hotel.findByIdAndDelete(id)
-    req.flash('success', 'Successfully deleted hotel!')
-    res.redirect('/hotel')
 }))
 
 router.get('/:id/edit', CatchAsync(async (req, res) => {
@@ -58,11 +50,19 @@ router.get('/:id/edit', CatchAsync(async (req, res) => {
     res.render('hotel/edit', { hotel })
 }))
 
+router.delete('/:id', CatchAsync(async (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    const deleted = await Hotel.findByIdAndDelete(id)
+    req.flash('success', 'Successfully deleted a Hotel!')
+    res.redirect('/hotel')
+}))
+
 router.put('/:id', validateHotel, CatchAsync(async (req, res) => {
     const { id } = req.params
     const hoteldata = req.body.hotel
     const updated = await Hotel.findByIdAndUpdate(id, hoteldata, { runValidators: true, new: true })
-    req.flash('success', 'Successfully updated hotel!')
+    req.flash('success', 'Successfully updated a Hotel!')
     res.redirect(`/hotel/${id}`)
 }))
 

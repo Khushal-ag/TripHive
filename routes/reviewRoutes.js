@@ -1,11 +1,12 @@
 const express = require('express');
-const router = express.Router({ mergeParams: true});
+const router = express.Router({ mergeParams: true });
+
 const Hotel = require('../models/hotel');
 const Review = require('../models/review');
+
 const ExpressError = require('../utils/expressError');
 const CatchAsync = require('../utils/catchAsync');
 const { reviewSchema } = require('../schemas.js');
-
 
 const validateReview = (req, res, next) => {
     const { error } = reviewSchema.validate(req.body)
@@ -24,7 +25,7 @@ router.post('/', validateReview, CatchAsync(async (req, res) => {
     hotel.reviews.push(review)
     await review.save()
     await hotel.save()
-    req.flash('success', 'Successfully made a new review!')
+    req.flash('success', 'Successfully Submitted a new review!')
     res.redirect(`/hotel/${hotel._id}`)
 }))
 
@@ -32,7 +33,7 @@ router.delete('/:reviewId', CatchAsync(async (req, res) => {
     const { id, reviewId } = req.params
     await Hotel.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)
-    req.flash('success', 'Successfully deleted review!')
+    req.flash('success', 'Successfully deleted a review!')
     res.redirect(`/hotel/${id}`)
 }))
 

@@ -1,23 +1,23 @@
+// Packages
 const express = require("express");
 const path = require("path");
 const app = express();
 require('dotenv').config();
 const ejsmate = require('ejs-mate')
 const mongo = require('mongoose');
+const methodOverride = require('method-override')
 const session = require('express-session');
 const flash = require('connect-flash');
-const hotels = require('./routes/hotels')
-const reviews = require('./routes/reviews')
-
-const methodOverride = require('method-override')
-app.use(methodOverride('_method'));
+const hotelRoutes = require('./routes/hotelRoutes')
+const reviewRoutes = require('./routes/reviewRoutes')
 
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsmate)
+app.set('views', path.join(__dirname, '/views'));
 
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', path.join(__dirname, '/views'));
 
 //MongoDB Connection
 mongo.set('strictQuery', false)
@@ -31,7 +31,7 @@ db.once("open", () => {
 
 //Session
 const sessionConfig = {
-    secret: 'UmveeIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -40,9 +40,11 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+
 app.use(session(sessionConfig))
 app.use(flash())
 
+//Global var Middleware
 app.use((req, res, next) => {
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
@@ -50,10 +52,10 @@ app.use((req, res, next) => {
 })
 
 //Routes
+app.use('/hotel', hotelRoutes)
+app.use('/hotel/:id/reviews', reviewRoutes)
 
-app.use('/hotel', hotels)
-app.use('/hotel/:id/reviews', reviews)
-
+//Endppoints
 app.get('/', (req, res) => {
     res.render('home');
 })
@@ -62,12 +64,14 @@ app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 })
 
+//Error Handler
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err
     if (!err.message) err.message = 'Something went wrong'
     res.status(statusCode).render('error', { err })
 })
 
+//Server
 app.listen(process.env.PORT, () => {
     console.log(`Serving on port ${process.env.PORT}`);
 });

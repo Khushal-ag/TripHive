@@ -1,31 +1,27 @@
 <% layout('layouts/boilerplate.ejs') %>
-<div class="row">
-  <div class="col-6 offset-3">
-    <div class="card">
-      <div class="card-header">
-        <div class="h1">All Hotels</div>
-      </div>
+
+<div class="card-header mb-2">
+  <div class="h1 text-center">All Hotels</div>
+</div>
+<% for (let hotel of hotels){%>
+<div class="card mb-3">
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-fluid" alt="" src="<%=hotel.image%>" />
+    </div>
+    <div class="col-md-8">
       <div class="card-body">
-        <details>
-          <ul>
-            <% for(let hotel of hotels){ %>
-            <li>
-              <a
-                href="hotel/<%= hotel._id %>"
-                class="text-decoration-none text-dark"
-                ><%= hotel.title %></a
-              >
-            </li>
-            <% } %>
-          </ul>
-        </details>
-      </div>
-      <div class="card-footer">
-        <a href="/" class="btn btn-success text-decoration-none">Home</a>
-        <a href="/hotel/new" class="btn btn-primary text-decoration-none"
-          >Add New Hotel</a
+        <h5 class="card-title"><%= hotel.title %></h5>
+
+        <p class="card-text"><%= hotel.description %></p>
+        <p class="card-text">
+          <small class="text-muted"><%= hotel.location%></small>
+        </p>
+        <a class="btn btn-primary" href="/hotel/<%=hotel._id%>"
+          >View <%=hotel.title%></a
         >
       </div>
     </div>
   </div>
 </div>
+<% }%>
