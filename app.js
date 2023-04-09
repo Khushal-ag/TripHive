@@ -56,9 +56,10 @@ passport.deserializeUser(User.deserializeUser())
 
 //Global var Middleware
 app.use((req, res, next) => {
-    if (!['/login', '/register', '/'].includes(req.originalUrl)) {
+    if (!['/login', '/register', '/','/favicon.ico'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl
     }
+    // console.log(req.session.returnTo)
     res.locals.currentUser = req.user
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
