@@ -24,7 +24,7 @@ const seedDB = async () => {
     for (let i = 0; i < 30; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const hotel = new Hotel({
-            //YOUR USER ID
+            author:'6432d40cd9a74d6d33e9a9b0',
             title: `${sample(descriptors)} ${sample(places)}`,
             price: Math.floor(Math.random() * 20) + 10,
             location: `${cities[random1000].city}, ${cities[random1000].state}`,

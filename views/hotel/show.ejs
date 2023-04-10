@@ -15,6 +15,10 @@
         <span class="text-primary card-text"><%= hotel.description %></span>
       </div>
       <div class="card-body">
+        <span class="text-success card-title">Created by : </span>
+        <span class="text-muted card-text"><%= hotel.author.username %></span>
+      </div>
+      <div class="card-body">
         <span class="text-success card-title">Location : </span>
         <span
           ><a
@@ -27,22 +31,23 @@
       </div>
       <div class="card-footer">
         <div class="flex">
-          <a href="/hotel" class="btn btn-dark text-decoration-none">Back</a>
-          <a
-            href="/hotel/<%= hotel._id %>/edit"
-            class="btn btn-success text-decoration-none"
-            >Edit</a
-          >
           <form action="/hotel/<%= hotel._id %>?_method=delete" method="post">
-            <button class="btn btn-danger text-decoration-none mt-3">
-              Delete
-            </button>
+            <a href="/hotel" class="btn btn-dark text-decoration-none">Back</a>
+            <% if(currentUser && currentUser._id.equals(hotel.author._id)) {%>
+            <a
+              href="/hotel/<%= hotel._id %>/edit"
+              class="btn btn-success text-decoration-none"
+              >Edit</a
+            >
+            <button class="btn btn-danger">Delete</button>
+            <% } %>
           </form>
         </div>
       </div>
     </div>
   </div>
   <div class="col-6">
+    <% if(currentUser){ %>
     <div class="card mb-3">
       <div class="card-header">
         <h1>Submit Your Review</h1>
@@ -83,25 +88,29 @@
         </form>
       </div>
     </div>
-    <% if(hotel.reviews.length){ %>
+    <% } %> <% if(hotel.reviews.length){ %>
     <div class="card">
       <div class="card-header">
         <h1>Reviews</h1>
       </div>
       <div class="card-body">
         <% for(let review of hotel.reviews){ %>
-        <div class="card">
+        <div class="card mb-3">
           <div class="card-body">
             <div>
               <span class="text-dark card-title">Rating : </span>
               <span class="text-muted card-text"><%= review.rating %></span>
             </div>
+            <div class="mb-2">
+              <span class="text-muted card-subtitle"
+                >Created by : <%= review.author.username %></span
+              >
+            </div>
             <div>
               <span class="text-success card-title">Review : </span>
               <span class="text-primary card-text"><%= review.body %></span>
             </div>
-          </div>
-          <div class="card-footer">
+            <% if(currentUser && currentUser._id.equals(review.author._id)){ %>
             <form
               action="/hotel/<%= hotel._id %>/reviews/<%= review._id %>/?_method=delete"
               method="post"
@@ -110,6 +119,7 @@
                 Delete
               </button>
             </form>
+            <% } %>
           </div>
         </div>
         <% } %>
