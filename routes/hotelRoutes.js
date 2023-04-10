@@ -7,18 +7,12 @@ const { isLoggedIn, validateHotel, isAuthor } = require('../utils/middlewares')
 
 const hotels = require('../controllers/hotels')
 
-router.get('/', CatchAsync(hotels.hotelIndex))
+router.route('/').get(CatchAsync(hotels.hotelIndex)).post(isLoggedIn, validateHotel, CatchAsync(hotels.createHotel))
 
 router.get('/new', isLoggedIn, hotels.renderNewForm)
 
-router.post('/', isLoggedIn, validateHotel, CatchAsync(hotels.createHotel))
-
-router.get('/:id', CatchAsync(hotels.showHotel))
+router.route('/:id').get(CatchAsync(hotels.showHotel)).put(isLoggedIn, isAuthor, validateHotel, CatchAsync(hotels.updateHotel)).delete(isLoggedIn, isAuthor, CatchAsync(hotels.deleteHotel))
 
 router.get('/:id/edit', isLoggedIn, isAuthor, CatchAsync(hotels.renderEditForm))
-
-router.delete('/:id', isLoggedIn, isAuthor, CatchAsync(hotels.deleteHotel))
-
-router.put('/:id', isLoggedIn, isAuthor, validateHotel, CatchAsync(hotels.updateHotel))
 
 module.exports = router
