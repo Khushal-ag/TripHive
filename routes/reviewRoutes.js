@@ -4,25 +4,16 @@ const router = express.Router({ mergeParams: true });
 const Hotel = require('../models/hotel');
 const Review = require('../models/review');
 
-const ExpressError = require('../utils/expressError');
 const CatchAsync = require('../utils/catchAsync');
-const { reviewSchema } = require('../schemas.js');
-const { isLoggedIn } = require('../utils/middlewares')
+const { isLoggedIn, validateReview, isReviewAuthor, isAuthor } = require('../utils/middlewares')
 
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body)
-    if (error) {
-        const msg = error.details.map(e => e.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next()
-    }
-}
+
 
 router.post('/', isLoggedIn, validateReview, CatchAsync(async (req, res) => {
     const { id } = req.params
     const hotel = await Hotel.findById(id)
     const review = new Review(req.body.review)
+    review.author = req.user._id
     hotel.reviews.push(review)
     await review.save()
     await hotel.save()
@@ -30,7 +21,7 @@ router.post('/', isLoggedIn, validateReview, CatchAsync(async (req, res) => {
     res.redirect(`/hotel/${hotel._id}`)
 }))
 
-router.delete('/:reviewId', isLoggedIn, CatchAsync(async (req, res) => {
+router.delete('/:reviewId', isLoggedIn, isAuthor, CatchAsync(async (req, res) => {
     const { id, reviewId } = req.params
     await Hotel.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)

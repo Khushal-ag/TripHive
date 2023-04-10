@@ -1,35 +1,25 @@
 const express = require('express')
 const router = express.Router()
 
-const Hotel = require('../models/hotel');
-
-const ExpressError = require('../utils/expressError');
 const CatchAsync = require('../utils/catchAsync');
-const { hotelSchema } = require('../schemas.js');
-const { isLoggedIn } = require('../utils/middlewares')
 
-const validateHotel = (req, res, next) => {
-    const { error } = hotelSchema.validate(req.body)
-    if (error) {
-        const msg = error.details.map(e => e.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next()
-    }
-}
+const Hotel = require('../models/hotel');
+const { isLoggedIn, validateHotel, isAuthor } = require('../utils/middlewares')
+
 
 router.get('/', CatchAsync(async (req, res) => {
     const hotels = await Hotel.find({}).sort({ title: 1 })
     res.render('hotel/index', { hotels });
 }))
 
-router.get('/new',isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('hotel/new')
 })
 
 router.post('/', isLoggedIn, validateHotel, CatchAsync(async (req, res) => {
     const hoteldata = new Hotel(req.body.hotel)
     console.log(hoteldata)
+    hoteldata.author = req.user._id
     await hoteldata.save()
     req.flash('success', 'Successfully Added a new Hotel!')
     res.redirect(`/hotel/${hoteldata._id}`)
@@ -37,7 +27,7 @@ router.post('/', isLoggedIn, validateHotel, CatchAsync(async (req, res) => {
 
 router.get('/:id', CatchAsync(async (req, res) => {
     const { id } = req.params
-    const hotel = await Hotel.findById(id).populate('reviews')
+    const hotel = await Hotel.findById(id).populate({path:'reviews',populate:{path:'author'}}).populate('author')
     if (!hotel) {
         req.flash('error', 'Cannot find that Hotel!')
         return res.redirect('/hotel')
@@ -45,13 +35,13 @@ router.get('/:id', CatchAsync(async (req, res) => {
     res.render('hotel/show', { hotel })
 }))
 
-router.get('/:id/edit', isLoggedIn, CatchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, isAuthor,CatchAsync(async (req, res) => {
     const { id } = req.params
     const hotel = await Hotel.findById(id)
     res.render('hotel/edit', { hotel })
 }))
 
-router.delete('/:id', isLoggedIn, CatchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor,CatchAsync(async (req, res) => {
     const { id } = req.params
     console.log(id)
     const deleted = await Hotel.findByIdAndDelete(id)
@@ -59,7 +49,7 @@ router.delete('/:id', isLoggedIn, CatchAsync(async (req, res) => {
     res.redirect('/hotel')
 }))
 
-router.put('/:id', isLoggedIn, validateHotel, CatchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, isAuthor,validateHotel, CatchAsync(async (req, res) => {
     const { id } = req.params
     const hoteldata = req.body.hotel
     const updated = await Hotel.findByIdAndUpdate(id, hoteldata, { runValidators: true, new: true })
