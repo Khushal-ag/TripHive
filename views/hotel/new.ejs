@@ -7,7 +7,13 @@
         <div class="h1">New Hotel</div>
       </div>
       <div class="card-body">
-        <form action="/hotel" method="post" class="validated-form" novalidate>
+        <form
+          action="/hotel"
+          method="post"
+          class="validated-form"
+          enctype="multipart/form-data"
+          novalidate
+        >
           <div>
             <label class="form-label" for="title">Title : </label>
             <input
@@ -57,13 +63,15 @@
           </div>
           <div>
             <label class="form-label" for="image">Image : </label>
-            <input
-              type="text"
-              name="hotel[image]"
-              id="image"
-              class="form-control"
-              required
-            />
+            <div class="mt-3">
+              <input
+                class="form-control"
+                type="file"
+                name="image"
+                id="image"
+                multiple
+              />
+            </div>
 
             <div class="valid-feedback">Looks good!</div>
           </div>

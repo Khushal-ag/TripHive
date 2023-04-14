@@ -11,6 +11,7 @@
           action="/hotel/<%= hotel._id %>?_method=put"
           method="post"
           class="validated-form"
+          enctype="multipart/form-data"
           novalidate
         >
           <div>
@@ -25,18 +26,7 @@
             />
             <div class="valid-feedback">Looks good!</div>
           </div>
-          <div>
-            <label for="image">Image : </label>
-            <input
-              type="text"
-              name="hotel[image]"
-              id="image"
-              class="form-control"
-              value="<%= hotel.image %>"
-              required
-            />
-            <div class="valid-feedback">Looks good!</div>
-          </div>
+
           <div>
             <label for="price">Price : </label>
             <input
@@ -75,6 +65,31 @@
             />
 
             <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div>
+            <label for="image">Add Images : </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              class="form-control"
+              multiple
+            />
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="mb-4">
+            <% hotel.images.forEach(function(img,i){%>
+            <img src="<%= img.thumbnail%>" class="img-thumbnail" alt="" />
+            <div class="form-check-inline">
+              <input
+                type="checkbox"
+                id="image-<%=i%>"
+                name="deleteImages[]"
+                value="<%=img.filename  %>"
+              />
+            </div>
+            <label for="image-<%=i%>">Delete?</label>
+            <% }) %>
           </div>
           <div>
             <button class="btn btn-primary mt-3">Update</button>
