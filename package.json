@@ -16,6 +16,7 @@
   "author": "Khushal-ag",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.15.0",
     "body-parser": "^1.20.2",
     "cloudinary": "^1.36.1",
     "connect-flash": "^0.1.1",

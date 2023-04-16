@@ -1,6 +1,8 @@
 const Hotel = require('../models/hotel');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
+const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 
 module.exports.hotelIndex = async (req, res) => {
     const hotels = await Hotel.find({}).sort({ title: 1 })
@@ -12,11 +14,16 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createHotel = async (req, res) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.hotel.location,
+        limit: 1
+    }).send()
     const hoteldata = new Hotel(req.body.hotel)
-    console.log(hoteldata)
+    hoteldata.geometry = geoData.body.features[0].geometry
     hoteldata.author = req.user._id
     hoteldata.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
     await hoteldata.save()
+    console.log(hoteldata)
     req.flash('success', 'Successfully Added a new Hotel!')
     res.redirect(`/hotel/${hoteldata._id}`)
 }
@@ -47,7 +54,12 @@ module.exports.deleteHotel = async (req, res) => {
 
 module.exports.updateHotel = async (req, res) => {
     const { id } = req.params
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.hotel.location,
+        limit: 1
+    }).send()
     const hoteldata = await Hotel.findByIdAndUpdate(id, { ...req.body.hotel })
+    hoteldata.geometry = geoData.body.features[0].geometry
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }))
     hoteldata.images.push(...imgs)
     await hoteldata.save()

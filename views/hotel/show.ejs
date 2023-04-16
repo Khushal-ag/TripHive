@@ -111,6 +111,7 @@
     </div>
   </div>
   <div class="col-6">
+    <div id="map" style="width: full; height: 300px" class="mb-4 "></div>
     <% if(currentUser){ %>
     <div class="card mb-3">
       <div class="card-header">
@@ -187,3 +188,10 @@
   </div>
   <% } %>
 </div>
+<script>
+  const mapToken = '<%-process.env.MAPBOX_TOKEN %>';
+  const hotel = <%-JSON.stringify(hotel) %>;
+</script>
+
+<script src="/javascripts/showMap.js">
+</script>
