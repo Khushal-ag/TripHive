@@ -1,6 +1,9 @@
 const User = require('../models/user')
 
 module.exports.registerForm = (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/hotel');
+    }
     res.render('user/register')
 }
 
@@ -21,6 +24,9 @@ module.exports.registerUser = async (req, res) => {
 }
 
 module.exports.loginForm = (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/hotel');
+    }
     res.render('user/login')
 }
 

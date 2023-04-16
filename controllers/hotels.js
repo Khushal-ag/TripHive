@@ -47,6 +47,10 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.deleteHotel = async (req, res) => {
     const { id } = req.params
     console.log(id)
+    const hotel = await Hotel.findById(id);
+    hotel.images.map((image) => {
+        cloudinary.uploader.destroy(image.filename);
+    });
     const deleted = await Hotel.findByIdAndDelete(id)
     req.flash('success', 'Successfully deleted a Hotel!')
     res.redirect('/hotel')
