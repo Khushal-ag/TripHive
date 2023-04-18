@@ -10,6 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const mongoSanitize = require('express-mongo-sanitize');
 const User = require('./models/user')
 const userRoutes = require('./routes/userRoutes')
 const hotelRoutes = require('./routes/hotelRoutes')
@@ -23,6 +24,10 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
+
 
 //MongoDB Connection
 mongo.set('strictQuery', false)
@@ -36,11 +41,13 @@ db.once("open", () => {
 
 //Session
 const sessionConfig = {
+    name: 'session',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -56,7 +63,7 @@ passport.deserializeUser(User.deserializeUser())
 
 //Global var Middleware
 app.use((req, res, next) => {
-    if (!['/login', '/register', '/','/favicon.ico'].includes(req.originalUrl)) {
+    if (!['/login', '/register', '/', '/favicon.ico'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl
     }
     res.locals.currentUser = req.user
