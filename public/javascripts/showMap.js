@@ -6,6 +6,9 @@ const map = new mapboxgl.Map({
     zoom: 8,
 });
 
+map.addControl(new mapboxgl.NavigationControl());
+
+
 new mapboxgl.Marker().setLngLat(hotel.geometry.coordinates).setPopup(
     new mapboxgl.Popup({ offset: 25 })
         .setHTML(
