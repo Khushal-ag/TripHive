@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
 })
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
+    next(res.status(404).render('pageNotFound'))
 })
 
 //Error Handler
