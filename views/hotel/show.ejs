@@ -147,7 +147,12 @@
     <% } %>
   </div>
   <div class="col-6">
-    <div id="map" style="width: full; height: 300px" class="mb-4"></div>
+    <div class="card-shadow bg-secondary text-white">
+      <div class="card-header text-center">
+        <div class="h2 p-2">Locate On Map :</div>
+      </div>
+      <div id="map" class="mb-4"></div>
+    </div>
     <% if(hotel.reviews.length){ %>
     <div class="card">
       <div class="card-header">
@@ -163,13 +168,31 @@
                 ><%= review.author.username %></span
               >
             </div>
-            <div class="d-flex justify-content-start">
-              <div class="h5 text-muted me-3 mt-1">Ratings :</div>
-              <div class="">
-                <p class="starability-result" data-rating="<%=review.rating %>">
-                  Rated: <%= review.rating %> stars
-                </p>
+            <div class="d-flex">
+              <div class="d-flex justify-content-start mt-2">
+                <div class="h5 text-muted me-3 mt-1">Ratings :</div>
+                <div class="">
+                  <p
+                    class="starability-result"
+                    data-rating="<%=review.rating %>"
+                  >
+                    Rated: <%= review.rating %> stars
+                  </p>
+                </div>
               </div>
+              <% if(review.rating > 3) {%>
+              <div class="ms-4 text-success">
+                <h1><%= review.rating %>.0</h1>
+              </div>
+              <% } else if(review.rating === 3){%>
+              <div class="ms-4 text-warning">
+                <h1><%= review.rating %>.0</h1>
+              </div>
+              <% } else{%>
+              <div class="ms-4 text-danger">
+                <h1><%= review.rating %>.0</h1>
+              </div>
+              <% } %>
             </div>
             <div>
               <span class="text-success h5">Review : </span>
