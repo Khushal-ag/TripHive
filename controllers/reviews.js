@@ -1,5 +1,6 @@
 const Hotel = require('../models/hotel');
 const Review = require('../models/review');
+const User = require('../models/user');
 
 module.exports.createReview = async (req, res) => {
     const { id } = req.params
@@ -9,6 +10,7 @@ module.exports.createReview = async (req, res) => {
     hotel.reviews.push(review)
     await review.save()
     await hotel.save()
+    const userPoints = await User.findByIdAndUpdate(req.user._id, { $inc: { points: 5 } })
     req.flash('success', 'Successfully Submitted a new review!')
     res.redirect(`/hotel/${hotel._id}`)
 }
