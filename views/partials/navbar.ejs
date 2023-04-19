@@ -42,7 +42,7 @@
           </button>
           <div class="dropdown-content">
             <div class="d-flex align-items-center py-2 px-1 drop-item">
-              <i class="fas fa-user-circle" style="font-size: 30px"></i>
+              <i class="fas fa-user-circle ms-1" style="font-size: 30px"></i>
               <div class="ms-3 h5 mt-1"><%= currentUser.username %></div>
             </div>
             <div class="d-flex justify-content-center px-2">
@@ -52,8 +52,23 @@
               ></div>
             </div>
             <div class="drop-item">
-              <a href="#">Points </a>
-              <span><%= currentUser.points %></span>
+              <a href="/shop" class="h5 text-primary">Points : </a>
+              <% if(currentUser.points>0) {%>
+              <a href="/shop" class="h5 text-success"
+                ><%= currentUser.points %></a
+              >
+              <% } else {%>
+              <a href="/shop" class="h5 text-danger"
+                ><%= currentUser.points %></a
+              >
+              <% } %>
+              <img
+                src="/assets/coin.png"
+                alt=""
+                width="26px"
+                height="26px"
+                class="mb-1"
+              />
             </div>
             <div class="d-flex justify-content-center px-2">
               <div
@@ -62,7 +77,7 @@
               ></div>
             </div>
             <div class="drop-item">
-              <a href="/logout" class="text-danger h6">Logout</a>
+              <a href="/logout" class="text-danger h5">Logout</a>
             </div>
           </div>
         </div>
