@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/stylesheets/nav.css" />
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
@@ -14,7 +15,10 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+    <div
+      class="collapse navbar-collapse justify-content-between"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/">Home</a>
@@ -31,7 +35,37 @@
         <a class="nav-link" href="/login">Login</a>
         <a class="nav-link" href="/register">Register</a>
         <% } else {%>
-        <a class="nav-link" href="/logout">Logout</a>
+        <div class="dropdown">
+          <button class="dropbtn d-flex justify-content-between">
+            <i class="fas fa-user-circle me-2" style="font-size: 32px"></i>
+            <i class="fas fa-caret-down ms-1" style="font-size: 26px"></i>
+          </button>
+          <div class="dropdown-content">
+            <div class="d-flex align-items-center py-2 px-1 drop-item">
+              <i class="fas fa-user-circle" style="font-size: 30px"></i>
+              <div class="ms-3 h5 mt-1"><%= currentUser.username %></div>
+            </div>
+            <div class="d-flex justify-content-center px-2">
+              <div
+                style="height: 1px; background-color: lightgray"
+                class="w-100"
+              ></div>
+            </div>
+            <div class="drop-item">
+              <a href="#">Points </a>
+              <span><%= currentUser.points %></span>
+            </div>
+            <div class="d-flex justify-content-center px-2">
+              <div
+                style="height: 1px; background-color: lightgray"
+                class="w-100"
+              ></div>
+            </div>
+            <div class="drop-item">
+              <a href="/logout" class="text-danger h6">Logout</a>
+            </div>
+          </div>
+        </div>
         <% } %>
       </div>
     </div>

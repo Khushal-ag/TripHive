@@ -66,7 +66,7 @@
 
             <div class="valid-feedback">Looks good!</div>
           </div>
-          <div>
+          <div class="mb-4">
             <label for="image">Add Images : </label>
             <input
               type="file"
@@ -77,18 +77,21 @@
             />
             <div class="valid-feedback">Looks good!</div>
           </div>
-          <div class="mb-4">
+          <div class="mb-4 d-flex">
             <% hotel.images.forEach(function(img,i){%>
-            <img src="<%= img.thumbnail%>" class="img-thumbnail" alt="" />
-            <div class="form-check-inline">
-              <input
-                type="checkbox"
-                id="image-<%=i%>"
-                name="deleteImages[]"
-                value="<%=img.filename  %>"
-              />
+            <div class="">
+              <img src="<%= img.thumbnail%>" class="img-thumbnail" alt="" />
+              <div class="form-check-inline ms-1">
+                <input
+                  type="checkbox"
+                  id="image-<%=i%>"
+                  class="form-check-input"
+                  name="deleteImages[]"
+                  value="<%=img.filename  %>"
+                />
+                <label for="image-<%=i%>">Delete?</label>
+              </div>
             </div>
-            <label for="image-<%=i%>">Delete?</label>
             <% }) %>
           </div>
           <div>
