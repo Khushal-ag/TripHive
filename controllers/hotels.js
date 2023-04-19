@@ -1,6 +1,5 @@
 const Hotel = require('../models/hotel');
 const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 
@@ -51,7 +50,7 @@ module.exports.deleteHotel = async (req, res) => {
     hotel.images.map((image) => {
         cloudinary.uploader.destroy(image.filename);
     });
-    const deleted = await Hotel.findByIdAndDelete(id)
+    await Hotel.findByIdAndDelete(id)
     req.flash('success', 'Successfully deleted a Hotel!')
     res.redirect('/hotel')
 }

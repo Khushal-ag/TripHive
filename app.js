@@ -15,6 +15,7 @@ const User = require('./models/user')
 const userRoutes = require('./routes/userRoutes')
 const hotelRoutes = require('./routes/hotelRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
+const shopRoutes = require('./routes/shopRoutes')
 
 //Express configuration
 app.set('view engine', 'ejs');
@@ -76,6 +77,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes)
 app.use('/hotel', hotelRoutes)
 app.use('/hotel/:id/reviews', reviewRoutes)
+app.use('/shop', shopRoutes)
 
 //Endppoints
 app.get('/', (req, res) => {

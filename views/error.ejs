@@ -1,11 +1,14 @@
 <% layout('layouts/boilerplate.ejs') %>
 
 <div class="row">
-    <div class="col-6 offset-3  "></div>
+  <div class="col-6 offset-3"></div>
 </div>
 <div class="alert alert-danger" role="alert">
-    <h4 class="alert-heading">Error!</h4>
-    <p><%= err.message %></p>
-    <hr>
-    <p class="mb-0">Please try again.</p>
+  <h3 class="alert-heading">Error!</h3>
+  <h4 class="alert-heading"><%=err.message%></h4>
+  <% if (process.env.NODE_ENV !== "production") { %>
+  <p><%= err.stack %></p>
+  <% } %>
+  <hr />
+  <p class="mb-0">Please try again.</p>
 </div>
