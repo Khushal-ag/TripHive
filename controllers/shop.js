@@ -1,7 +1,7 @@
 const User = require('../models/user')
 
 const products = [
-    { id: 0, imgsrc: '/assets/amazon500.png', points: 450000 },
+    { id: 0, imgsrc: '/assets/amazon500.png', points: 4500000 },
 ]
 
 module.exports.renderShop = (req, res) => {
