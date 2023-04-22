@@ -1,10 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 .heading {
-  font-family: "Open Sans", sans-serif;
-  background: -webkit-linear-gradient(darkgrey, #ffffff);
+  font: bold 60px "Open Sans", sans-serif;
+  background: linear-gradient(
+    to right,
+    #ffc8dd 0%,
+    #ffafcc 50%,
+    #ff99c8 75%,
+    #ff70a6 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 body {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)),

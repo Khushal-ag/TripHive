@@ -28,13 +28,18 @@
           </div>
           <div>
             <label class="form-label" for="price">Price : </label>
-            <input
-              type="number"
-              name="hotel[price]"
-              id="price"
-              class="form-control"
-              required
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text px-4">₹</span>
+              </div>
+              <input
+                type="number"
+                name="hotel[price]"
+                id="price"
+                class="form-control"
+                required
+              />
+            </div>
 
             <div class="valid-feedback">Looks good!</div>
           </div>
