@@ -14,8 +14,8 @@
           enctype="multipart/form-data"
           novalidate
         >
-          <div>
-            <label for="title">Title : </label>
+          <div class="mb-3">
+            <label for="title" class="form-label h6">Title : </label>
             <input
               type="text"
               name="hotel[title]"
@@ -28,8 +28,8 @@
             <div class="valid-feedback">Looks good!</div>
           </div>
 
-          <div>
-            <label for="price">Price : </label>
+          <div class="mb-3">
+            <label for="price" class="form-label h6">Price : </label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text px-4">₹</span>
@@ -46,8 +46,8 @@
             </div>
             <div class="valid-feedback">Looks good!</div>
           </div>
-          <div>
-            <label for="description">Description : </label>
+          <div class="mb-3">
+            <label for="description" class="form-label h6">Description : </label>
             <textarea
               name="hotel[description]"
               id="description"
@@ -60,8 +60,8 @@
 
             <div class="valid-feedback">Looks good!</div>
           </div>
-          <div>
-            <label for="location">Location : </label>
+          <div class="mb-3">
+            <label for="location" class="form-label h6">Location : </label>
             <input
               type="text"
               name="hotel[location]"
@@ -75,7 +75,7 @@
             <div class="valid-feedback">Looks good!</div>
           </div>
           <div class="mb-4">
-            <label for="image">Add Images : </label>
+            <label for="image" class="form-label h6">Add Images : </label>
             <input
               type="file"
               name="image"
@@ -86,9 +86,9 @@
             />
             <div class="valid-feedback">Looks good!</div>
           </div>
-          <div class="mb-4 d-flex">
+          <div class="mb-2 d-flex">
             <% hotel.images.forEach(function(img,i){%>
-            <div class="">
+            <div>
               <img src="<%= img.thumbnail%>" class="img-thumbnail" alt="" />
               <div class="form-check-inline ms-1">
                 <input
@@ -98,12 +98,12 @@
                   name="deleteImages[]"
                   value="<%=img.filename  %>"
                 />
-                <label for="image-<%=i%>">Delete?</label>
+                <label for="image-<%=i%>" class="form-label h6">Delete?</label>
               </div>
             </div>
             <% }) %>
           </div>
-          <div>
+          <div class="mb-3">
             <button class="btn btn-primary mt-3">Update</button>
             <a href="/hotel/<%= hotel._id %>" class="btn btn-danger mt-3"
               >Back</a
