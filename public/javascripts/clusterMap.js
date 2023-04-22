@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'cluster-map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-103.5917, 40.6699],
+    center: [77.6737, 27.4924],
     zoom: 3
 });
 
@@ -64,8 +64,8 @@ map.on('load', () => {
         filter: ['!', ['has', 'point_count']],
         paint: {
             'circle-color': '#11b4da',
-            'circle-radius': 7,
-            'circle-stroke-width': 1,
+            'circle-radius': 6,
+            'circle-stroke-width': 2,
             'circle-stroke-color': '#fff'
         }
     });

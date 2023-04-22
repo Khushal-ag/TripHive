@@ -2,18 +2,18 @@
 <div class="shadow-md">
   <div id="cluster-map" class="mb-3"></div>
 </div>
-<div class="card-header mb-2">
+<div class="card-header mb-4">
   <div class="h1 text-center">All Hotels</div>
 </div>
 <% for (let hotel of hotels){%>
-<div class="card mb-3">
+<div class="card mb-3 shadow-lg rounded-3">
   <div class="row">
     <div class="col-md-4">
       <%if(hotel.images.length) {%>
-      <img class="img-fluid" alt="" src="<%=hotel.images[0].url%>" />
+      <img class="img-fluid rounded-3" alt="" src="<%=hotel.images[0].url%>" />
       <% }else {%>
       <img
-        class="img-fluid"
+        class="img-fluid rounded-3"
         alt=""
         src="https://res.cloudinary.com/dnbvjlyo7/image/upload/v1681488950/YelpCamp/unsplash_lm52nl.jpg"
       />
@@ -21,13 +21,13 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title"><%= hotel.title %></h5>
+        <h5 class="card-title h3"><%= hotel.title %></h5>
 
-        <p class="card-text"><%= hotel.description %></p>
-        <p class="card-text">
+        <p class="card-text fs-5"><%= hotel.description %></p>
+        <p class="card-text h5">
           <small class="text-muted"><%= hotel.location%></small>
         </p>
-        <a class="btn btn-primary" href="/hotel/<%=hotel._id%>"
+        <a class="btn btn-primary mt-2 fs-5 fw-bolder" href="/hotel/<%=hotel._id%>"
           >View <%=hotel.title%></a
         >
       </div>
