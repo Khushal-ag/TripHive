@@ -4,8 +4,19 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 
 module.exports.hotelIndex = async (req, res) => {
-    const hotels = await Hotel.find({}).sort({ title: 1 })
-    res.render('hotel/index', { hotels });
+    let nomatch = null;
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        const hotels = await Hotel.find({ title: regex }).sort({ title: 1 })
+        if (hotels.length < 1) {
+            nomatch = "No Hotels match that query, please try again."
+        }
+        res.render('hotel/index', { hotels: hotels, nomatch: nomatch });
+    }
+    else {
+        const hotels = await Hotel.find({}).sort({ title: 1 })
+        res.render('hotel/index', { hotels: hotels, nomatch: nomatch});
+    }
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -75,3 +86,7 @@ module.exports.updateHotel = async (req, res) => {
     req.flash('success', 'Successfully updated a Hotel!')
     res.redirect(`/hotel/${id}`)
 }
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
