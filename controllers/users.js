@@ -9,8 +9,8 @@ module.exports.registerForm = (req, res) => {
 
 module.exports.registerUser = async (req, res) => {
     try {
-        const { email, username, password } = req.body
-        const user = new User({ email, username })
+        const { email, username, password,github } = req.body
+        const user = new User({ email, username,github })
         const registeredUser = await User.register(user, password)
         req.login(registeredUser, err => {
             if (err) return next(err)

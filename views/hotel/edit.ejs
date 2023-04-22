@@ -22,6 +22,7 @@
               id="title"
               class="form-control"
               value="<%= hotel.title %>"
+              placeholder="Enter hotel title"
               required
             />
             <div class="valid-feedback">Looks good!</div>
@@ -39,6 +40,7 @@
                 id="price"
                 class="form-control"
                 value="<%= hotel.price %>"
+                placeholder="Enter hotel price"
                 required
               />
             </div>
@@ -50,6 +52,7 @@
               name="hotel[description]"
               id="description"
               class="form-control"
+              placeholder="Write few lines about hotel"
               required
             >
 <%= hotel.description %></textarea
@@ -65,6 +68,7 @@
               id="location"
               class="form-control"
               value="<%= hotel.location %>"
+              placeholder="Enter hotel location"
               required
             />
 
@@ -77,6 +81,7 @@
               name="image"
               id="image"
               class="form-control"
+              placeholder="Add images"
               multiple
             />
             <div class="valid-feedback">Looks good!</div>
