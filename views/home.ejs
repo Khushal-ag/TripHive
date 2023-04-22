@@ -17,7 +17,7 @@
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
-        <div>
+        <div class="nav-container">
           <nav class="nav nav-masthead justify-content-between float-md-right">
             <a class="navbar-brand" href="#">
               <img
@@ -31,12 +31,24 @@
               <a class="nav-link active me-0" aria-current="page" href="#"
                 >Home</a
               >
-              <a class="nav-link" href="/hotel">Hotels</a>
+              <a
+                class="nav-link text-decoration-none"
+                href="/hotel"
+                >Hotels</a
+              >
               <% if(!currentUser) { %>
-              <a class="nav-link" href="/login">Login</a>
-              <a class="nav-link" href="/register">Register</a>
+              <a class="nav-link text-decoration-none" href="/login"
+                >Login</a
+              >
+              <a
+                class="nav-link text-decoration-none"
+                href="/register"
+                >Register</a
+              >
               <% } else { %>
-              <a class="nav-link" href="/logout">Logout</a>
+              <a class="nav-link text-decoration-none text-danger logout" href="/logout"
+                >Logout</a
+              >
               <% } %>
             </div>
           </nav>
@@ -51,23 +63,29 @@
         </p>
         <a
           href="/hotel"
-          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white"
+          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white text-dark"
           >View Hotels</a
         >
       </main>
-
+      <ul class="slideshow">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
       <footer class="mt-auto w-100 bg-transparent">
         <div class="d-flex justify-content-between">
-          <div class="text-light">
+          <div class="text-light h6">
             Developed by :
             <a
               href="https://github.com/Khushal-ag"
-              class="text-light"
+              class="text-light text-decoration-none footer-link"
               target="_blank"
               >Khushal Agarwal</a
             >
           </div>
-          <div class="text-light">
+          <div class="text-light h6">
             <span class="text-muted">&copy; 2024 Copyright :</span> TripHive
           </div>
         </div>

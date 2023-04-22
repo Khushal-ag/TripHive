@@ -1,6 +1,6 @@
 body {
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
   background-size: cover;
   background-position: center;
@@ -11,6 +11,18 @@ body {
   max-width: 60vw;
 }
 
+.nav-container {
+  position: absolute;
+  width: 60%;
+  z-index: 1;
+}
+
+main {
+  z-index: 1;
+}
+footer {
+  z-index: 1;
+}
 .nav-link {
   padding: 0.25rem 0;
   font-weight: 700;
@@ -19,9 +31,17 @@ body {
   border-bottom: 0.25rem solid transparent;
 }
 
-.nav-link:hover {
+.nav-link:hover  {
   color: rgba(255, 255, 255, 0.5);
   border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+.footer-link:hover {
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+.logout:hover {
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: #dc4c64;
 }
 
 .nav-link.active {
@@ -33,4 +53,84 @@ body {
 .btn-secondary:hover {
   color: #333;
   text-shadow: none;
+}
+
+.slideshow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.slideshow li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite;
+}
+.slideshow li:nth-child(1) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(http://i.imgur.com/K3mPv14.jpg);
+  background-position: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+.slideshow li:nth-child(2) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(http://i.imgur.com/SBEmFpv.jpg);
+  animation-delay: 10s;
+  background-position: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+.slideshow li:nth-child(3) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(http://i.imgur.com/emvhOnb.jpg);
+  animation-delay: 20s;
+  background-position: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+.slideshow li:nth-child(4) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(http://i.imgur.com/2LSMCmJ.jpg);
+  animation-delay: 30s;
+  background-position: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+.slideshow li:nth-child(5) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(http://i.imgur.com/TVGe0Ef.jpg);
+  animation-delay: 40s;
+  background-position: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+@keyframes imageAnimation {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
 }

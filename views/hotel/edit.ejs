@@ -29,15 +29,19 @@
 
           <div>
             <label for="price">Price : </label>
-            <input
-              type="text"
-              name="hotel[price]"
-              id="price"
-              class="form-control"
-              value="<%= hotel.price %>"
-              required
-            />
-
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text px-4">₹</span>
+              </div>
+              <input
+                type="number"
+                name="hotel[price]"
+                id="price"
+                class="form-control"
+                value="<%= hotel.price %>"
+                required
+              />
+            </div>
             <div class="valid-feedback">Looks good!</div>
           </div>
           <div>
