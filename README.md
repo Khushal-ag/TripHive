@@ -12,11 +12,12 @@
 </picture>
 <br>
   
-### 🏨A hotel review website that allows users to find hotels and leave reviews📝 for them. 
-### 🔁In return user get rewarded 🪙 for their valuable reviews✅.
-  
+### 🏨A hotel review website that allows users to find hotels and leave reviews📝 for them
+
+### 🔁In return user get rewarded 🪙 for their valuable reviews✅
+
 ## ⚙️Dependencies Used
-  
+
 ---
 
 **[<kbd> <br> **@mapbox/mapbox-sdk** ^0.15.0 <br> </kbd>][mapbox]**&nbsp;&nbsp;
@@ -30,11 +31,84 @@
 **[<kbd> <br> **ejs:** ^3.1.9 <br> </kbd>][ejs]**&nbsp;&nbsp;
 **[<kbd> <br> **sanitize-html:** ^2.10.0 <br> </kbd>][sanitize-html]**&nbsp;&nbsp;
 **[<kbd> <br> **express-mongo-sanitize:** ^2.2.0 <br> </kbd>][express-mongo-sanitize]**&nbsp;&nbsp;
-	
+
 ---
-	
+
+<br>
+
+## 📸 Screen Shots
+
+<details>
+<summary align=center>
+  
+  #### 🔽Click to Expand
+
+</Summary>
+<br>
+
+| Landing Page | Home Page   |
+| ------------ | ----------- |
+| ![landing]   | ![homepage] |
+
+| Hotel Detail | Reward Section |
+| ------------ | -------------- |
+| ![hotel]     | ![reward]      |
+
+| New Hotel Page | Edit Hotel Page |
+| -------------- | --------------- |
+| ![new]         | ![edit]         |
+
+| Register Page | Login Page |
+| ------------- | ---------- |
+| ![register]   | ![login]   |
+
+<br>
+</details>
+</div>
+<div align='center'>
+
+## 🛠️Building from Source
+
+</div>
+
+- ⬇️Fetch latest source code from master branch.
+
+```console
+
+[khushal@arch]$ git clone https://github.com/Khushal-ag/TripHive.git
+[khushal@arch]$ cd TripHive
+
+```
+
+- 👌Create **.env** file & add your own **CONFIGS**
+
+```js
+
+SESSION_SECRET = <Your_session_secret>
+MONGO_URI = <Your_database_url>
+PORT = <Port_number>
+
+CLOUDINARY_CLOUD_NAME = <Your_cloud_name>
+CLOUDINARY_API_KEY = <Your_api_key>
+CLOUDINARY_SECRET = <Your_secret>
+
+MAPBOX_TOKEN = <Your_Mapbox_Token>
+
+```
+
+- 👟Run the Website with 🆚Code **or** 💻Command Line :
+
+```console
+
+[khushal@arch TripHive]$ yarn
+[khushal@arch TripHive]$ yarn start
+
+```
+
+<div align="center">
+
 ## 📂Directory Structure
-	
+
 </div>
 
 <details >
@@ -42,8 +116,8 @@
   
   #### 🔽Click to Expand
   </Summary>
-	
-```
+
+```bash
 |-- CODE_OF_CONDUCT.md
 |-- LICENSE
 |-- README.md
@@ -119,60 +193,21 @@
 |       `-- register.ejs
 `-- yarn.lock
 ```
-	
-</details>	
+
+</details>
 
 <div align='center'>
-	
-## 🛠️Building from Source
-		
-</div>
 
-- ⬇️Fetch latest source code from master branch. 
-
-```console
-
-[khushal@arch]$ git clone https://github.com/Khushal-ag/TripHive.git
-[khushal@arch]$ cd TripHive
-
-```
-
-- 👌Create **.env** file & add your own **CONFIGS**
-
-```js
-
-SESSION_SECRET = <Your_session_secret>
-MONGO_URI = <Your_database_url>
-PORT = <Port_number>
-
-CLOUDINARY_CLOUD_NAME = <Your_cloud_name>
-CLOUDINARY_API_KEY = <Your_api_key>
-CLOUDINARY_SECRET = <Your_secret>
-
-MAPBOX_TOKEN = <Your_Mapbox_Token>
-
-```
-
-- 👟Run the Website with 🆚Code **or** 💻Command Line :
-
-```console
-
-[khushal@arch TripHive]$ yarn
-[khushal@arch TripHive]$ yarn start
-
-```
-
-<div align='center'>
-	
 ## ☢️Contributors
-		
+
 [![][contributors]][contributors-graph]
 
 _Note: It may take up to 24h for the [contrib.rocks][contrib-rocks] plugin to update because it's refreshed once a day._
-	
+
 </div>
 
 <!----------------------------------{ Labels }--------------------------------->
+
 [views]: https://komarev.com/ghpvc/?username=TripHive&label=view%20counter&color=red&style=flat
 [repo-size]: https://img.shields.io/github/repo-size/Khushal-ag/TripHive
 [issues]: https://img.shields.io/github/issues-raw/Khushal-ag/TripHive
@@ -199,4 +234,11 @@ _Note: It may take up to 24h for the [contrib.rocks][contrib-rocks] plugin to up
 
 <!----------------------------------{ Images }--------------------------------->
 
-[homepage]: https://telegra.ph/file/9207c7449caa0740a9031.png
+[landing]: https://graph.org/file/17cea01409d517ec8614b.png
+[homepage]: https://graph.org/file/5496aa1234f629edb3d63.png
+[hotel]: https://graph.org/file/365f262d8114e8cd2432a.png
+[reward]: https://graph.org/file/8fd4d2cac55a7667a2759.png
+[login]: https://graph.org/file/55aa6c045848ddb1c19b9.png
+[register]: https://graph.org/file/b13e90c173d3db9a8e219.png
+[edit]: https://graph.org/file/bba7b693d62f775c91ce2.png
+[new]: https://graph.org/file/5d617077c9dfdbd6e268a.png
