@@ -34,8 +34,6 @@
 
 ---
 
-<br>
-
 ## 📸 Screen Shots
 
 <details>
@@ -117,7 +115,7 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
   #### 🔽Click to Expand
   </Summary>
 
-```bash
+```
 |-- CODE_OF_CONDUCT.md
 |-- LICENSE
 |-- README.md
@@ -205,6 +203,10 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 _Note: It may take up to 24h for the [contrib.rocks][contrib-rocks] plugin to update because it's refreshed once a day._
 
 </div>
+
+<p align="center">
+<img width="150%" src="https://camo.githubusercontent.com/6038c8f1fd8f60de75477470e5a87210e9256202e01dfba9986446304a0f0254/68747470733a2f2f63617073756c652d72656e6465722e76657263656c2e6170702f6170693f747970653d776176696e6726636f6c6f723d6772616469656e74266865696768743d36302673656374696f6e3d666f6f746572">
+</p>
 
 <!----------------------------------{ Labels }--------------------------------->
 
