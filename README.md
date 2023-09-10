@@ -36,12 +36,6 @@
 
 ## 📸 Screen Shots
 
-<details>
-<summary align=center>
-  
-  #### 🔽Click to Expand
-
-</Summary>
 <br>
 
 | Landing Page | Home Page   |
@@ -61,7 +55,6 @@
 | ![register]   | ![login]   |
 
 <br>
-</details>
 </div>
 <div align='center'>
 
@@ -108,12 +101,6 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 ## 📂Directory Structure
 
 </div>
-
-<details >
-  <summary align=center>
-  
-  #### 🔽Click to Expand
-  </Summary>
 
 ```
 |-- CODE_OF_CONDUCT.md
@@ -191,8 +178,6 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 |       `-- register.ejs
 `-- yarn.lock
 ```
-
-</details>
 
 <div align='center'>
 
