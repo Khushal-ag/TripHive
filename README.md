@@ -87,12 +87,12 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 
 ```
 
-- 👟Run the Website with 🆚Code **or** 💻Command Line :
+- 👟Run the Website using 💻Command Line ( **pnpm** should be installed ) :
 
 ```console
 
-[khushal@arch TripHive]$ yarn
-[khushal@arch TripHive]$ yarn start
+[khushal@arch TripHive]$ pnpm i
+[khushal@arch TripHive]$ pnpm start
 
 ```
 
@@ -103,80 +103,69 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 </div>
 
 ```
-|-- CODE_OF_CONDUCT.md
-|-- LICENSE
-|-- README.md
-|-- app.js
-|-- cloudinary
-|   `-- index.js
-|-- controllers
-|   |-- hotels.js
-|   |-- reviews.js
-|   |-- shop.js
-|   `-- users.js
-|-- models
-|   |-- hotel.js
-|   |-- review.js
-|   `-- user.js
-|-- package.json
-|-- public
-|   |-- assets
-|   |   |-- coin.png
-|   |   |-- gradient.jpg
-|   |   |-- products
-|   |   |   |-- amazon500.png
-|   |   |   |-- flipkart.png
-|   |   |   |-- h&m.png
-|   |   |   |-- myntra.jpeg
-|   |   |   |-- nike.png
-|   |   |   `-- starbucks.png
-|   |   |-- triphive-black.png
-|   |   |-- triphive-favicon.png
-|   |   |-- triphive-img.png
-|   |   `-- triphive.png
-|   |-- javascripts
-|   |   |-- clusterMap.js
-|   |   |-- showMap.js
-|   |   `-- validateForm.js
-|   `-- stylesheets
-|       |-- home.css
-|       |-- map.css
-|       |-- nav.css
-|       |-- pageNotFound.css
-|       |-- shop.css
-|       `-- stars.css
-|-- routes
-|   |-- hotelRoutes.js
-|   |-- reviewRoutes.js
-|   |-- shopRoutes.js
-|   `-- userRoutes.js
-|-- schemas.js
-|-- utils
-|   |-- catchAsync.js
-|   |-- expressError.js
-|   `-- middlewares.js
-|-- views
-|   |-- error.ejs
-|   |-- home.ejs
-|   |-- hotel
-|   |   |-- edit.ejs
-|   |   |-- index.ejs
-|   |   |-- new.ejs
-|   |   `-- show.ejs
-|   |-- layouts
-|   |   `-- boilerplate.ejs
-|   |-- pageNotFound.ejs
-|   |-- partials
-|   |   |-- flash.ejs
-|   |   |-- footer.ejs
-|   |   |-- navbar.ejs
-|   |   `-- stars.ejs
-|   |-- shop
-|   |   `-- index.ejs
-|   `-- user
-|       |-- login.ejs
-|       `-- register.ejs
-`-- yarn.lock
+.
+├── cloudinary
+│   └── index.js
+├── CODE_OF_CONDUCT.md
+├── controllers
+│   ├── hotels.js
+│   ├── reviews.js
+│   ├── shop.js
+│   └── users.js
+├── index.js
+├── LICENSE
+├── models
+│   ├── hotel.js
+│   ├── review.js
+│   └── user.js
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   ├── assets
+│   ├── javascripts
+│   │   ├── clusterMap.js
+│   │   ├── showMap.js
+│   │   └── validateForm.js
+│   └── stylesheets
+│       ├── home.css
+│       ├── map.css
+│       ├── nav.css
+│       ├── pageNotFound.css
+│       ├── shop.css
+│       └── stars.css
+├── README.md
+├── routes
+│   ├── hotelRoutes.js
+│   ├── reviewRoutes.js
+│   ├── shopRoutes.js
+│   └── userRoutes.js
+├── schemas.js
+├── utils
+│   ├── catchAsync.js
+│   ├── expressError.js
+│   └── middlewares.js
+├── vercel.json
+└── views
+    ├── error.ejs
+    ├── home.ejs
+    ├── hotel
+    │   ├── edit.ejs
+    │   ├── index.ejs
+    │   ├── new.ejs
+    │   └── show.ejs
+    ├── layouts
+    │   └── boilerplate.ejs
+    ├── pageNotFound.ejs
+    ├── partials
+    │   ├── flash.ejs
+    │   ├── footer.ejs
+    │   ├── navbar.ejs
+    │   └── stars.ejs
+    ├── shop
+    │   └── index.ejs
+    └── user
+        ├── login.ejs
+        └── register.ejs
 ```
 
 <div align='center'>
