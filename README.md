@@ -87,12 +87,12 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 
 ```
 
-- 👟Run the Website using 💻Command Line ( **pnpm** should be installed ) :
+- 👟Run the Website using 💻Command Line ( **yarn** should be installed ) :
 
 ```console
 
-[khushal@arch TripHive]$ pnpm i
-[khushal@arch TripHive]$ pnpm start
+[khushal@arch TripHive]$ yarn
+[khushal@arch TripHive]$ yarn start
 
 ```
 
@@ -119,7 +119,7 @@ MAPBOX_TOKEN = <Your_Mapbox_Token>
 │   ├── review.js
 │   └── user.js
 ├── package.json
-├── pnpm-lock.yaml
+├── yarn.lock
 ├── public
 │   ├── assets
 │   ├── javascripts
