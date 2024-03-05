@@ -18,7 +18,7 @@
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.15.3",
     "body-parser": "^1.20.2",
-    "cloudinary": "^1.41.3",
+    "cloudinary": "^2.0.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
