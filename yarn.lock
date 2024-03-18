@@ -44,10 +44,10 @@
     is-plain-obj "^1.1.0"
     xtend "^4.0.1"
 
-"@mapbox/mapbox-sdk@^0.15.3":
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-sdk/-/mapbox-sdk-0.15.3.tgz#796d46ef1c472a8eea2bce524f4457a05cc9b4cd"
-  integrity sha512-axkdkWzSnH5Nky6plqS1jZc5W4txWQimA3iF1CbYVQYuR1tBZZwe8JcWVB8Lw8y06VuYQLQ7SQscyZagdczUJg==
+"@mapbox/mapbox-sdk@^0.15.5":
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-sdk/-/mapbox-sdk-0.15.5.tgz#1814142999cbdf35258bba63d53d4ed35bc4f94f"
+  integrity sha512-unxQvLZU4Sk+sNrZGzylCHXnC1FU3YZvmnHensoJjSPG1iOivV6LEIYwFScH+IodY0A3xx56kkeQ9QJBpWMpdg==
   dependencies:
     "@mapbox/fusspot" "^0.4.0"
     "@mapbox/parse-mapbox-token" "^0.2.0"
@@ -1128,10 +1128,10 @@ mongodb@6.3.0:
     bson "^6.2.0"
     mongodb-connection-string-url "^3.0.0"
 
-mongoose@^8.2.1:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.2.1.tgz#c64466c8c2ddc8da95adf20513085ca9defe8301"
-  integrity sha512-UgZZbXSJH0pdU936qj3FyVI+sBsMoGowFnL5R/RYrA50ayn6+ZYdVr8ehsRgNxRcMYwoNld5XzHIfkFRJTePEw==
+mongoose@^8.2.2:
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.2.2.tgz#8079857d906aab5b94a5f7ae7600b7401efdbfdc"
+  integrity sha512-6sMxe1d3k/dBjiOX4ExNTNOP0g1x0iq8eXyg+ttgIXM3HLnQ0IUyXRwVVAPFFY6O4/8uYN5dB0Ec72FrexbPpw==
   dependencies:
     bson "^6.2.0"
     kareem "2.5.1"
