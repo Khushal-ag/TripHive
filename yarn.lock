@@ -355,10 +355,10 @@ clone-response@^1.0.2:
   dependencies:
     mimic-response "^1.0.0"
 
-cloudinary@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.3.1.tgz#0ba04ac32d9afeec73327941f0474881ffa8c8f5"
-  integrity sha512-DW63pfRhN6Ob9czyLSG8G3Vz+m1tijLYyTZMOuFpFWPwtVXZVdFrc2ggDtGrbIBYpvr94tjPOkOdWgYW2ae3rA==
+cloudinary@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.4.0.tgz#c7c6f7d233f5751252edfc28e0d47a73793a5cf6"
+  integrity sha512-5HA9VffeaR3MKiHpRo9A5SWgZFPxzlEDep0O4KzL3TIDi1hmQC9gjA4dHpVmdeFC0ZD1Xr5fGsWRKVDK9Ay9PQ==
   dependencies:
     lodash "^4.17.21"
     q "^1.5.1"
@@ -1130,10 +1130,10 @@ mongodb@6.7.0:
     bson "^6.7.0"
     mongodb-connection-string-url "^3.0.0"
 
-mongoose@^8.5.1:
-  version "8.5.1"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.5.1.tgz#011192edf77af54dd0826a836459212da317c503"
-  integrity sha512-OhVcwVl91A1G6+XpjDcpkGP7l7ikZkxa0DylX7NT/lcEqAjggzSdqDxb48A+xsDxqNAr0ntSJ1yiE3+KJTOd5Q==
+mongoose@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.5.2.tgz#73b40ce778f3fc66407aba3c3157795cdd278543"
+  integrity sha512-GZB4rHMdYfGatV+23IpCrqFbyCOjCNOHXgWbirr92KRwTEncBrtW3kgU9vmpKjsGf7nMmnAy06SwWUv1vhDkSg==
   dependencies:
     bson "^6.7.0"
     kareem "2.6.3"
