@@ -1191,10 +1191,10 @@ mongodb@~6.16.0:
     bson "^6.10.3"
     mongodb-connection-string-url "^3.0.0"
 
-mongoose@^8.14.2:
-  version "8.14.2"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.14.2.tgz#5f36170ba16f31dba775b5dca070969c59d4bb3f"
-  integrity sha512-LPLZiN6M8ap4GlXmaaG7yrHIkK45dSO3NZ0qgERJl2CfcL5eP7MA9umn4zGhKiWkMLbnHM4jhebIYbUhvuwWvQ==
+mongoose@^8.15.0:
+  version "8.15.0"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.15.0.tgz#29024dfc941b5b092a85a9d947b7812a6c61957a"
+  integrity sha512-WFKsY1q12ScGabnZWUB9c/QzZmz/ESorrV27OembB7Gz6rrh9m3GA4Srsv1uvW1s9AHO5DeZ6DdUTyF9zyNERQ==
   dependencies:
     bson "^6.10.3"
     kareem "2.6.3"
@@ -1568,10 +1568,10 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sanitize-html@^2.16.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/sanitize-html/-/sanitize-html-2.16.0.tgz#2b9973b63fa42e3580020499cbda1d894b3642bc"
-  integrity sha512-0s4caLuHHaZFVxFTG74oW91+j6vW7gKbGD6CD2+miP73CE6z6YtOBN0ArtLd2UGyi4IC7K47v3ENUbQX4jV3Mg==
+sanitize-html@^2.17.0:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/sanitize-html/-/sanitize-html-2.17.0.tgz#a8f66420a6be981d8fe412e3397cc753782598e4"
+  integrity sha512-dLAADUSS8rBwhaevT12yCezvioCA+bmUTPH/u57xKPT8d++voeYE6HeluA/bPbQ15TwDBG2ii+QZIEmYx8VdxA==
   dependencies:
     deepmerge "^4.2.2"
     escape-string-regexp "^4.0.0"
