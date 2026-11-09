@@ -1238,10 +1238,10 @@ mongodb@~6.20.0:
     bson "^6.10.4"
     mongodb-connection-string-url "^3.0.2"
 
-mongoose@^8.24.7:
-  version "8.24.7"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.24.7.tgz#6e99b6b2b33aa049e7f10689f81ca247b33b5de3"
-  integrity sha512-+hrEOLpLGPgOt7S/UrcBAKZ4gvB6+5qf16jspWH5xQ8WtQu9lRTzcqy04ZNQrlIox4Pl6Nh2RzlNDPSOFw9rng==
+mongoose@^8.24.8:
+  version "8.24.8"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.24.8.tgz#8943c43400b8d0d3217face0c14a244f80fa25a2"
+  integrity sha512-p6g/mvvW2PJlC3lgzQJ7PECArfaOTKWJVG/KHf67WYU3MvJ72ZWdv5u7syFRe881IjALMZpKwffNE97G10HTzg==
   dependencies:
     bson "^6.10.4"
     kareem "2.6.3"
